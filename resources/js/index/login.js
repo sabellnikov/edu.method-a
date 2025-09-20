@@ -11,11 +11,22 @@ function clearFields() {
 }
 
 function loginCheck() {
-  const user = document.getElementById('login-user').value;
-  const pass = document.getElementById('login-pass').value;
+  const user = document.getElementById('login-user').value.toLowerCase();
+  const pass = document.getElementById('login-pass').value.toLowerCase();
   
-  if (users[user] && users[user].pass === pass) {
-    window.location.href = users[user].url;
+  // Проверяем пользователя с учетом нормализации регистра
+  const normalizedUsers = Object.keys(users).reduce((acc, key) => {
+    acc[key.toLowerCase()] = {
+      pass: users[key].pass.toLowerCase(),
+      url: users[key].url
+    };
+    return acc;
+  }, {});
+  
+  if (normalizedUsers[user] && normalizedUsers[user].pass === pass) {
+    // Находим оригинальный ключ пользователя для получения URL
+    const originalUserKey = Object.keys(users).find(key => key.toLowerCase() === user);
+    window.location.href = users[originalUserKey].url;
   } else {
     document.getElementById('login-error').classList.remove('hidden');
     clearFields();
