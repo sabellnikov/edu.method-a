@@ -10,6 +10,19 @@
   --color-logo: #0F1D07;
 }
 
+/* Анимация махания рукой */
+.wave-animation {
+  display: inline-block;
+  animation: wave 2s ease-in-out;
+  transform-origin: 70% 70%;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  10%, 30%, 50%, 70%, 90% { transform: rotate(14deg); }
+  20%, 40%, 60%, 80% { transform: rotate(-8deg); }
+}
+
 .circles {
     position: absolute;
     top: 0;

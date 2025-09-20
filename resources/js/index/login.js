@@ -50,11 +50,11 @@ function setTimeBasedGreeting() {
     greeting = 'Доброй ночи!';
   }
   
-  greetingElement.innerHTML = greeting + '<span class="wave-animation">👋</span> ';
+  greetingElement.innerHTML = greeting + '<span class="wave-animation">👋</span>';
 }
 
-// Устанавливаем приветствие при загрузке страницы
-document.addEventListener('DOMContentLoaded', setTimeBasedGreeting);
+// Устанавливаем приветствие до загрузки DOM
+setTimeBasedGreeting();
 
 // Добавляем обработчик для входа по Enter
 document.addEventListener('DOMContentLoaded', function() {
