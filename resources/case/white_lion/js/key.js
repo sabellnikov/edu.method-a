@@ -1,11 +1,17 @@
-  // задай свой "секретный код"
-  const secretKey = "12345";  
+---
+---
+
+// ВКЛЮЧИТЬ/ВЫКЛЮЧИТЬ ПЕРЕНАПРАВЛЕНИЕ
+const redirectEnabled = true; // установите false чтобы отключить перенаправление
+
+// ЗАДАТЬ СЕКРЕТНЫЙ КОД site.data.users.LEO46.url
+const secretKey = "{{ site.data.users.leo46.url | split: '?' | last | split: '=' | last }}";
 
   // получаем параметры из URL
   const urlParams = new URLSearchParams(window.location.search);
 
   // проверяем наличие кода
-  if (urlParams.get("key") !== secretKey) {
+  if (redirectEnabled && urlParams.get("key") !== secretKey) {
     // если кода нет или он неверный → редиректим на главную
     window.location.href = "/";
   } else {
@@ -21,3 +27,20 @@
       window.history.replaceState(null, '', newUrl);
     }
   }
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".menu-link").forEach(link => {
+    link.addEventListener("click", function (event) {
+      event.preventDefault(); // отменяем обычный переход
+      const url = new URL(this.href, window.location.origin);
+
+      // если параметра key ещё нет — добавляем
+      if (!url.searchParams.has("key")) {
+        url.searchParams.set("key", secretKey);
+      }
+
+      // открываем в новой вкладке
+      window.open(url.toString(), "_blank");
+    });
+  });
+});

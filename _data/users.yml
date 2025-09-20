@@ -3,7 +3,7 @@ test:
   url: "http://ya.ru"
 leo46:
   pass: "leo46"
-  url: "/lms/white_lion?key=12345"
+  url: "/lms/white_lion?key=wl46"
 user3:
   pass: "pass3"
   url: "http://google.com"
