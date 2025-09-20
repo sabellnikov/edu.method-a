@@ -1,0 +1,15 @@
+:root {
+  /* Градиент фона */
+  --color-background: #EEF7FC;
+
+  /* Навигационная панель */
+  --color-hover-current-page: #003044;
+  --color-text-current-page: #18b8d1;
+
+  /* Навигационная панель */
+  --color-button-off: #B04687;
+  --color-button-on: #9C1869;
+
+  /* Значок */
+  --color-logo: #002D42;
+}
